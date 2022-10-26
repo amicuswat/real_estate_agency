@@ -8,8 +8,11 @@ import phonenumbers
 def fill_phones(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        flat.owner_pure_phone = phonenumbers.parse(flat.owners_phonenumber,
-                                                   'RU')
+        try:
+            flat.owner_pure_phone = phonenumbers.parse(flat.owners_phonenumber,
+                                                       'RU')
+        except TypeError:
+            continue
         flat.save()
 
 
@@ -27,6 +30,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.RunPython(fill_phones)
-        migrations.RunPython(fill_phones, move_backwards)
+        migrations.RunPython(fill_phones)
+        # migrations.RunPython(fill_phones, move_backwards)
     ]
