@@ -10,10 +10,11 @@ class AdminFlat(admin.ModelAdmin):
                     'construction_year', 'town')
     list_editable = ('new_building',)
     list_filter = ('new_building',)
+    raw_id_fields = ('liked_by',)
 
 
 class AdminComplaint(admin.ModelAdmin):
-    raw_id_fields =('user', 'flat',)
+    raw_id_fields =('user', 'flat', )
 
 
 admin.site.register(Flat, AdminFlat)
