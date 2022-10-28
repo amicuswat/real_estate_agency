@@ -80,3 +80,7 @@ class Owner(models.Model):
 
     flats = models.ManyToManyField(Flat, related_name='flat_owners',
                                    verbose_name='Квартиры в собственности:')
+
+
+    def __str__(self):
+        return self.name
