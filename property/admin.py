@@ -14,11 +14,12 @@ class AdminFlat(admin.ModelAdmin):
 
 
 class AdminComplaint(admin.ModelAdmin):
-    raw_id_fields =('user', 'flat', )
+    raw_id_fields = ('user', 'flat', )
 
 
 class AdminOwner(admin.ModelAdmin):
-    raw_id_fields =('flats',)
+    list_display = ('name', 'pure_phone', 'phonenumber')
+    raw_id_fields = ('flats',)
 
 
 admin.site.register(Flat, AdminFlat)
