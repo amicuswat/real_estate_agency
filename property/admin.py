@@ -10,7 +10,7 @@ class OwnersFlatsInline(admin.TabularInline):
 
 @admin.register(Flat)
 class AdminFlat(admin.ModelAdmin):
-    search_fields = ('town', 'address', 'flat_owners__name')
+    search_fields = ('town', 'address', 'owners__name')
     readonly_fields = ('created_at',)
     list_display = ('address', 'price', 'new_building',
                     'construction_year', 'town')
