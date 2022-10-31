@@ -7,7 +7,7 @@ import phonenumbers
 
 def fill_phones(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         try:
             flat.owner_pure_phone = phonenumbers.parse(flat.owners_phonenumber,
                                                        'RU')
@@ -18,9 +18,7 @@ def fill_phones(apps, schema_editor):
 
 def move_backwards(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
-        flat.owner_pure_phone = ''
-        flat.save()
+    Flat.objects.all().update(owner_pure_phone='')
 
 
 class Migration(migrations.Migration):
