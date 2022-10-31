@@ -11,7 +11,6 @@ def connect_owners_to_flats(apps, schema_editor):
                                   phonenumber=flat.owners_phonenumber)
 
         owner.flats.add(flat)
-        owner.save()
 
 
 class Migration(migrations.Migration):
